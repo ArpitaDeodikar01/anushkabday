@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anushka’s Celebration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Video -->
+    <video autoplay muted loop id="bg-video">
+        <source src="bg.mp4" type="video/mp4">
+    </video>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti"></canvas>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>🌸 Happy Birthday, Anushka! 🌈</h1>
+        <p>Welcome to Anushka’s Celebration!</p>
+        <button class="anime-btn" onclick="showGallery('artGallery')">🎨 Anushka’s Masterpieces</button>
+        <button class="anime-btn" onclick="showGallery('portraitGallery')">💫 Anushka — The Masterpiece</button>
+        <button class="anime-btn" onclick="sendEmailJSWish()">🎉 Wish Anushka via Email</button>
+    </div>
+
+    <!-- Art Gallery -->
+    <div class="gallery hidden" id="artGallery">
+        <button class="anime-btn back-btn" onclick="backToMain()">⬅ Back</button>
+        <button class="scroll-btn left" onclick="scrollCarousel('artCarousel', -300)">◀</button>
+        <button class="scroll-btn right" onclick="scrollCarousel('artCarousel', 300)">▶</button>
+
+        <div class="art-carousel" id="artCarousel">
+            <div class="art-row">
+                <img src="art1.jpg" alt="">
+                <img src="art2.jpg" alt="">
+            </div>
+            <div class="art-row bottom-row">
+                <img src="art3.jpg" alt="">
+                <img src="art4.jpg" alt="">
+                <img src="art5.jpg" alt="">
+            </div>
+            <div class="art-row bottom-row">
+                <img src="art6.jpg" alt="">
+                <img src="art7.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- Portrait Gallery -->
+    <div class="gallery hidden" id="portraitGallery">
+        <button class="anime-btn back-btn" onclick="backToMain()">⬅ Back</button>
+        <div class="exhibition">
+            <div class="art-piece"><img src="art1.jpg" alt=""></div>
+            <div class="art-piece"><img src="art2.jpg" alt=""></div>
+            <div class="art-piece"><img src="art3.jpg" alt=""></div>
+        </div>
+    </div>
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser/dist/email.min.js"></script>
+
+    <script>
+        // Initialize EmailJS
+        emailjs.init("on26me3pbcP7LtyHm"); // Your public key
+
+        // Make function global
+        window.sendEmailJSWish = function () {
+            const wish = prompt("Type your birthday wish for Anushka:");
+            if (!wish || wish.trim() === "") return;
+
+            emailjs.send("service_85z7eur", "template_1wbs696", {
+                to_name: "Anushka",
+                message: wish
+            }).then(
+                response => alert("Your wish was sent! 🎉"),
+                error => {
+                    console.error("EmailJS error:", error);
+                    alert("Failed to send your wish. Check console.");
+                }
+            );
+        }
+
+        // Bind button
+        document.getElementById("wishBtn").onclick = sendEmailJSWish;
+    </script>
+
+    <!-- Your main JS -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

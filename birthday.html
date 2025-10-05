@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Anushkaa 🎂</title>
+
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+        }
+
+        /* Background Video */
+        video.bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        /* Sakura Petals Canvas */
+        canvas#sakuraCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Main Content */
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
+            animation: popIn 1s ease forwards;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #ffb6c1;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards 1s;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Floating Anime Character */
+        .anime-character {
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+            width: 150px;
+            animation: floatY 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
+            z-index: 2;
+        }
+
+        @keyframes floatY {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Video -->
+    <video class="bg-video" src="bg.mp4" autoplay loop muted></video>
+
+    <!-- Sakura Petals Canvas -->
+    <canvas id="sakuraCanvas"></canvas>
+
+    <!-- Floating Anime Character -->
+    <img src="anime-character.png" alt="Anime Character" class="anime-character" />
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>🎂 Happy Birthday Anushkaa 🎉</h1>
+        <p>May your day be filled with fun & adventure!</p>
+    </div>
+
+    <script>
+        // 🎊 Confetti Burst for 10 seconds
+        const duration = 10 * 1000;
+        const end = Date.now() + duration;
+
+        (function frame() {
+            confetti({
+                particleCount: 5,
+                startVelocity: 30,
+                spread: 360,
+                ticks: 60,
+                origin: {
+                    x: Math.random(),
+                    y: Math.random() - 0.2
+                }
+            });
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+        })();
+
+
+        // 🌸 Sakura Petals Animation
+        const canvas = document.getElementById('sakuraCanvas');
+        const ctx = canvas.getContext('2d');
+        let petals = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Petal {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.size = 15 + Math.random() * 10;
+                this.speed = 1 + Math.random() * 2;
+                this.angle = Math.random() * 2 * Math.PI;
+                this.spin = Math.random() * 0.02 - 0.01;
+            }
+            update() {
+                this.y += this.speed;
+                this.x += Math.sin(this.angle);
+                this.angle += this.spin;
+                if (this.y > canvas.height) this.reset();
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.fillStyle = "rgba(255, 182, 193, 0.8)";
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.bezierCurveTo(5, -10, 10, 10, 0, 15);
+                ctx.bezierCurveTo(-10, 10, -5, -10, 0, 0);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function initPetals() {
+            petals = [];
+            for (let i = 0; i < 40; i++) petals.push(new Petal());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let p of petals) {
+                p.update();
+                p.draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        initPetals();
+        animate();
+    </script>
+</body>
+
+</html>
