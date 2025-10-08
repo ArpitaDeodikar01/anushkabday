@@ -97,20 +97,17 @@ p {
 
 /* Gallery Overlay */
 .gallery {
-    position: fixed;
+    position: absolute;
+    /* or static */
     top: 0;
     left: 0;
     width: 100%;
     min-height: 100vh;
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(8px);
-    color: white;
-    padding-top: 100px;
-    z-index: 20;
-    opacity: 1;
-    transition: opacity 0.6s ease;
+    height: auto;
+    /* allow natural height growth */
     overflow-y: auto;
 }
+
 
 .gallery.hidden {
     display: none;
@@ -140,74 +137,75 @@ p {
     /* wrap on smaller screens */
 }
 
+/* Art rows inside art carousel */
 .art-row img {
-    width: 320px;
-    height: 320px;
+    width: 480px;
+    /* increased from 320px */
+    height: 480px;
+    /* increased from 320px */
     object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 0 30px #ff99cc;
+    border-radius: 20px;
+    box-shadow: 0 0 40px #ff99cc;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .art-row img:hover {
     transform: scale(1.08);
-    box-shadow: 0 0 40px #fff0f5;
+    box-shadow: 0 0 55px #fff0f5;
 }
 
 /* Portrait Gallery - vertical scroll */
-#portraitGallery .exhibition {
-    display: flex;
-    flex-direction: column;
-    /* stack images vertically */
-    gap: 20px;
-    max-height: 80vh;
-    overflow-y: auto;
-    padding: 20px;
-    justify-content: flex-start;
-    align-items: center;
-}
-
 #portraitGallery .art-piece img {
-    width: 300px;
-    height: 300px;
+    width: 460px;
+    /* increased from 300px */
+    height: 460px;
+    /* increased from 300px */
     object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 0 30px #ff99cc;
+    border-radius: 20px;
+    box-shadow: 0 0 40px #ff99cc;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 #portraitGallery .art-piece img:hover {
     transform: scale(1.08);
-    box-shadow: 0 0 40px #fff0f5;
-}
-
-/* Horizontal scrollbar for art carousel */
-.art-carousel::-webkit-scrollbar {
-    height: 10px;
-}
-
-.art-carousel::-webkit-scrollbar-thumb {
-    background: #ff66b2;
-    border-radius: 5px;
-}
-
-.art-carousel::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 55px #fff0f5;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    p {
-        font-size: 1.2rem;
-    }
 
     .art-row img,
     #portraitGallery .art-piece img {
-        width: 220px;
-        height: 220px;
+        width: 280px;
+        /* larger than before, but still fits small screens */
+        height: 280px;
+    }
+}
+
+/* Portrait Gallery - vertical scroll */
+#portraitGallery .art-piece img {
+    width: 460px;
+    /* increased from 300px */
+    height: 460px;
+    /* increased from 300px */
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 0 40px #ff99cc;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#portraitGallery .art-piece img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 55px #fff0f5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+    .art-row img,
+    #portraitGallery .art-piece img {
+        width: 280px;
+        /* larger than before, but still fits small screens */
+        height: 280px;
     }
 }

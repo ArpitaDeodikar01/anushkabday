@@ -68,23 +68,4 @@ function scrollCarousel(carouselId, amount) {
     const carousel = document.getElementById(carouselId);
     carousel.scrollBy({ left: amount, behavior: 'smooth' });
 }
-function sendWish() {
-    // Ask user for their wish
-    const wish = prompt("Type your birthday wish for Anushka:");
 
-    if (wish && wish.trim() !== "") {
-        // Create a new div for the wish
-        const wishDiv = document.createElement("div");
-        wishDiv.textContent = "🎈 " + wish;
-        wishDiv.style.padding = "10px";
-        wishDiv.style.margin = "5px auto";
-        wishDiv.style.background = "rgba(255,182,193,0.3)";
-        wishDiv.style.borderRadius = "10px";
-        wishDiv.style.width = "60%";
-        wishDiv.style.textAlign = "center";
-        wishDiv.style.fontSize = "1.2rem";
-
-        // Add the wish to the container
-        document.getElementById("wishesContainer").appendChild(wishDiv);
-    }
-}

@@ -20,11 +20,11 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <h1>🌸 Happy Birthday, Anushka! 🌈</h1>
-        <p>Welcome to Anushka’s Celebration!</p>
+
+        <h1>Welcome to Anushka’s Celebration!</h1>
         <button class="anime-btn" onclick="showGallery('artGallery')">🎨 Anushka’s Masterpieces</button>
         <button class="anime-btn" onclick="showGallery('portraitGallery')">💫 Anushka — The Masterpiece</button>
-        <button class="anime-btn" onclick="sendEmailJSWish()">🎉 Wish kkk Anushka via Email</button>
+        <button class="anime-btn" onclick="sendEmailJSWish()">🎉 Wish Anushka via Email</button>
     </div>
 
     <!-- Art Gallery -->
@@ -47,6 +47,18 @@
                 <img src="art6.jpg" alt="">
                 <img src="art7.jpg" alt="">
             </div>
+            <div class="art-row bottom-row">
+                <img src="art8.jpg" alt="">
+                <img src="art9.jpg" alt="">
+            </div>
+            <div class="art-row bottom-row">
+                <img src="art10.jpg" alt="">
+                <img src="art11.jpg" alt="">
+            </div>
+            <div class="art-row bottom-row">
+                <img src="art1.jpg" alt="">
+                <img src="art13.jpg" alt="">
+            </div>
         </div>
     </div>
 
@@ -54,9 +66,40 @@
     <div class="gallery hidden" id="portraitGallery">
         <button class="anime-btn back-btn" onclick="backToMain()">⬅ Back</button>
         <div class="exhibition">
-            <div class="art-piece"><img src="art1.jpg" alt=""></div>
-            <div class="art-piece"><img src="art2.jpg" alt=""></div>
-            <div class="art-piece"><img src="art3.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-212385173.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-290198565.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-434037996.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-490847872.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-460322792.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-487065625-POP_OUT.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-523419155.jpg" alt=""></div>
+
+            <div class="art-piece"><img src="Snapchat-669184928.jpg" alt=""></div>
+
+            <div class="art-piece"><img src="Snapchat-722875580.jpg" alt=""></div>
+
+            <div class="art-piece"><img src="Snapchat-782135349.jpg" alt=""></div>
+
+            <div class="art-piece"><img src="Snapchat-812247089.jpg" alt=""></div>
+
+            <div class="art-piece"><img src="Snapchat-897730372.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-1224746464.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-1231914648.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-1272569671.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-1322299535.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-1625182838.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-1849057226.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-897730372.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-1864923739.jpg" alt=""></div>
+            <div class="art-piece"><img src="Snapchat-1994558544.jpg" alt=""></div>
+
+
+
+
+
+
+
+
         </div>
     </div>
 
@@ -69,12 +112,8 @@
 
         // Make function global
         window.sendEmailJSWish = function () {
-            const wish = prompt("Type your birthday wish for Anushka:");
-            if (!wish || wish.trim() === "") return;
-
             emailjs.send("service_85z7eur", "template_1wbs696", {
-                to_name: "Anushka",
-                message: wish
+                to_name: "Anushka"
             }).then(
                 response => alert("Your wish was sent! 🎉"),
                 error => {
